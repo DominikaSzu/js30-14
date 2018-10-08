@@ -50,5 +50,39 @@ const person = {
 };
 // and think we make a copy:
 // how do we take a copy instead?
+
+const wesPerson = Object.assign({}, person);
+
+
 // We will hopefully soon see the object ...spread
+
+const wesPerson2 = {...person}; // it works, hurray!
+
 // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+
+const dosia = {
+    name: 'Dosia',
+    age: 30,
+    dogs: {
+        first: 'Harry',
+        second: 'Kapsel'
+    }
+};
+
+const ja = Object.assign({}, dosia);
+
+ja.dogs.third = 'dunno'; //it's a shallow way of copying object so a level deeper, when we do changes, it will influence the original object
+ja.age = '300'; // updating an exisiting one will not influence the original object
+
+console.log(dosia);
+console.log(ja);
+
+//when we want not to influence the original at all, we can do the deep clone, but it's not raccomanded!
+
+const me = JSON.parse(JSON.stringify(dosia));
+me.name = 'Dominika';
+
+console.log(me);
+console.log(ja);
+console.log(dosia);
